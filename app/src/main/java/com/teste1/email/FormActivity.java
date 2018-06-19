@@ -3,6 +3,7 @@ package com.teste1.email;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.support.multidex.MultiDex;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -18,6 +19,7 @@ public class FormActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form);
+        MultiDex.install(this);
 
         txtNome = (EditText)findViewById(R.id.txtNome);
         txtEmail = (EditText)findViewById(R.id.txtEmail);
@@ -40,12 +42,12 @@ public class FormActivity extends AppCompatActivity {
             new Thread(new Runnable(){
                 @Override
                 public void run() {
-                    Mail m = new Mail("seunome@seuemail.com.br", "suaSenha");
+                    Mail m = new Mail("seuEmail@gmail.com", "senha");
 
                     String[] toArr = {email};
                     m.setTo(toArr);
 
-                    m.setFrom("seunome@seuemail.com.br");
+                    m.setFrom("outroemail@gmail.com");
                     m.setSubject("Email de teste do seu app");
                     m.setBody(nome + " recebeu um email com sucesso!");
 
@@ -58,13 +60,13 @@ public class FormActivity extends AppCompatActivity {
                         //tratar algum outro erro aqui
                     }
 
-                    System.exit(0);
+                    //System.exit(0);
                 }
             }).start();
         }
         else {
             Toast.makeText(getApplicationContext(), "Não estava online para enviar e-mail!", Toast.LENGTH_SHORT).show();
-            System.exit(0);
+            //System.exit(0);
         }
     }
 

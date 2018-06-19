@@ -2,6 +2,7 @@ package com.teste1.email;
 
 import java.util.Date;
 import java.util.Properties;
+
 import javax.activation.CommandMap;
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
@@ -44,11 +45,11 @@ public class Mail extends javax.mail.Authenticator {
 
 
     public Mail() {
-        _host = "smtp.seuemail.com.br";
-        _port = "465"; // porta padrão, se não funcionar use 587 ou em último caso a 25
-        _sport = "465"; // porta socket padrão, mesmas instruções anteriores
+        _host = "smtp.gmail.com";
+        _port = "587"; // porta padrão, se não funcionar use 587 ou em último caso a 25
+        _sport = "587"; // porta socket padrão, mesmas instruções anteriores
 
-        _user = ""; // usuário
+        _user = ""; // email de quem envia
         _pass = ""; // senha
         _from = ""; // email do remetente
         _subject = ""; // assunto
@@ -56,7 +57,7 @@ public class Mail extends javax.mail.Authenticator {
 
         _debuggable = false;
         _auth = true;
-        _useSsl = false;//gmail usa true
+        _useSsl = true;//gmail usa true
         _isHtmlBody = true;
 
         _multipart = new MimeMultipart();
